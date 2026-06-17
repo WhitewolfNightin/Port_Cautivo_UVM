@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cautivo - UVM Red Universitaria</title>
+    <style>
+        :root {
+            --uvm-red: #cc0000;
+            --uvm-dark-red: #990000;
+            --bg-color: #f4f4f6;
+            --text-color: #333333;
+            --white: #ffffff;
+            --gray-light: #e1e1e5;
+            --gray-dark: #666666;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Encabezado superior institucional */
+        header {
+            width: 100%;
+            background-color: var(--white);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--uvm-red);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo-container h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--uvm-red);
+            letter-spacing: 1px;
+        }
+
+        .logo-container span {
+            color: #000;
+        }
+
+        .campus-info {
+            font-size: 13px;
+            color: var(--gray-dark);
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* Contenedor Principal (Centrado Absoluto) */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            background: radial-gradient(circle at center, #ffffff 0%, #e9e9f0 100%);
+        }
+
+        .login-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px var(--shadow);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 35px;
+            border-top: 5px solid var(--uvm-red);
+            transition: transform 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-header h2 {
+            font-size: 22px;
+            color: #111;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+
+        /* Formulario y Controles */
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 1.5px solid var(--gray-light);
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.25s ease;
+            background-color: #fafafa;
+        }
+
+        .form-control:focus {
+            border-color: var(--uvm-red);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+        }
+
+        /* Estado de Error */
+        .form-control.error {
+            border-color: #ff3333;
+            background-color: #fff8f8;
+        }
+
+        .error-message {
+            color: #ff3333;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        /* Botón de Acción */
+        .btn-submit {
+            width: 100%;
+            background-color: var(--uvm-red);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(204, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--uvm-dark-red);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* Términos y Condiciones */
+        .terms-text {
+            font-size: 11px;
+            color: var(--gray-dark);
+            text-align: center;
+            margin-top: 25px;
+            line-height: 1.5;
+        }
+
+        .terms-text a {
+            color: var(--uvm-red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Pie de página */
+        footer {
+            width: 100%;
+            background-color: #1e1e24;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            border-top: 1px solid #2d2d35;
+        }
+
+        /* Ajustes Responsivos */
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 20px;
+            }
+            .logo-container h1 {
+                font-size: 20px;
+            }
+            .campus-info {
+                font-size: 11px;
+            }
+            .login-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>UVM <span>Red Universitaria</span></h1>
+        </div>
+        <div class="campus-info">
+            <p>Portal Cautivo de Autenticación</p>
+            <p>Campus Villahermosa</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="login-card">
+            <div class="card-header">
+                <h2>Iniciar Sesión</h2>
+                <p>Ingresa tus credenciales institucionales para acceder a la red <strong>UVM_estudiantes</strong></p>
+            </div>
+
+            <form id="captivePortalForm" onsubmit="return validateLogin(event)">
+                <div class="form-group">
+                    <label for="matricula">Matrícula Escolar</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="matricula" 
+                            name="matricula" 
+                            class="form-control" 
+                            placeholder="Ej. 620178462"
+                            maxlength="9"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div id="errorMatricula" class="error-message">Por favor, ingresa una matrícula válida (9 dígitos numéricos).</div>
+                </div>
+
+                <button type="submit" class="btn-submit">Conectar a Internet</button>
+            </form>
+
+            <div class="terms-text">
+                Al conectarte, aceptas las <a href="#">Políticas de Uso de Redes</a> y el <a href="#">Aviso de Privacidad</a> de la Universidad del Valle de México.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Universidad del Valle de México. Ingeniería en Sistemas Computacionales. Proyecto Integrador.</p>
+    </footer>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            
+            const matriculaInput = document.getElementById('matricula');
+            const errorMessage = document.getElementById('errorMatricula');
+            const matriculaValue = matriculaInput.value.trim();
+            
+            // Expresión regular para validar exactamente 9 dígitos numéricos
+            const matriculaRegex = /^[0-9]{9}$/;
+
+            if (!matriculaRegex.test(matriculaValue)) {
+                // Mostrar error visual
+                matriculaInput.classList.add('error');
+                errorMessage.style.display = 'block';
+                matriculaInput.focus();
+                return false;
+            } else {
+                // Limpiar errores si es válido
+                matriculaInput.classList.remove('error');
+                errorMessage.style.display = 'none';
+                
+                // Simulación de persistencia de sesión mediante Cookies o Estado, tal como se definió en el Proyecto Integrador
+                setSessionCookie("uvm_session_auth", "token_" + matriculaValue, 1);
+                
+                // Animación de carga en el botón
+                const btn = document.querySelector('.btn-submit');
+                btn.innerHTML = 'Autenticando...';
+                btn.style.backgroundColor = '#990000';
+                btn.disabled = true;
+
+                // Redirección simulada tras éxito de autenticación en la Capa de Aplicación
+                setTimeout(() => {
+                    alert('¡Autenticación Exitosa! Conectado a la red UVM_estudiantes.');
+                    window.location.href = "https://www.uvm.mx";
+                }, 1500);
+
+                return true;
+            }
+        }
+
+        // Función auxiliar para simular la máquina de estados con cookies en el cliente
+        function setSessionCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        // Monitorear la entrada para remover el estado de error dinámicamente mientras escribe
+        document.getElementById('matricula').addEventListener('input', function() {
+            if (this.value.length === 9 && /^[0-9]+$/.test(this.value)) {
+                this.classList.remove('error');
+                document.getElementById('errorMatricula').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
